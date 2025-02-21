@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Maven Project Configuration File -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- Model version for Maven -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project Metadata -->
     <groupId>groupId</groupId>
     <artifactId>Maven-Junit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Compiler and Encoding Settings -->
     <properties>
+        <!-- Java Compiler Version (Ensure compatibility with JDK 23) -->
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
+        <!-- Encoding for source files -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
+        <!-- Selenium WebDriver dependency for browser automation -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.27.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
+
+        <!-- JUnit 4 dependency for unit testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <!-- WebDriverManager for automatic driver management -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.3</version>
         </dependency>
 
+        <!-- TestNG framework for advanced test execution -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.7.0</version>
-            <scope>test</scope>
+            <scope>test</scope> <!-- This means TestNG is only used during testing -->
         </dependency>
 
     </dependencies>
