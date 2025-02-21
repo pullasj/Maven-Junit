@@ -1,35 +1,53 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<!--For Regression-->
-<!--<suite name="Regression" verbose="1">-->
+<!-- TestNG Suite Configuration -->
 
-<!--    For Parallel Testing-->
-    <suite name="Regression" parallel="tests" thread-count="2">
+<!-- 
+    This suite is designed for regression testing and supports parallel execution. 
+    The tests are configured to run on different browsers with specified parameters.
+-->
 
-    <!-- Test for running on Chrome -->
+<!-- Enabling parallel execution with 2 threads -->
+<suite name="Regression" parallel="tests" thread-count="2">
+
+    <!-- Test Configuration for Chrome Browser -->
     <test name="ChromeTest">
+        <!-- Passing browser parameter to the test -->
         <parameter name="Browser" value="Chrome"></parameter>
+
+        <!-- Defining test groups to be included/excluded -->
         <groups>
             <run>
+                <!-- Running smoke tests in Chrome -->
                 <include name="smoke"></include>
+                <!-- Excluding regression tests from Chrome -->
                 <exclude name="regression"></exclude>
             </run>
         </groups>
+
+        <!-- Specifying test classes to execute -->
         <classes>
             <class name="MultiBrowser"/>
         </classes>
     </test>
 
-    <!-- Test for running on Edge -->
+    <!-- Test Configuration for Edge Browser -->
     <test name="EdgeTest">
+        <!-- Passing browser parameter to the test -->
         <parameter name="Browser" value="Edge"></parameter>
+
+        <!-- Defining test groups for execution -->
         <groups>
             <run>
+                <!-- Running regression tests in Edge -->
                 <include name="regression"></include>
             </run>
         </groups>
+
+        <!-- Specifying test classes to execute -->
         <classes>
             <class name="MultiBrowser"/>
         </classes>
     </test>
+
 </suite>
