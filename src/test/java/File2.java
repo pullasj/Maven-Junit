@@ -6,58 +6,63 @@ import org.openqa.selenium.support.ui.Select;
 
 public class File2 extends File1 {
 
-    // Xpaths (reused from File1 where possible)
+    // XPath for the login button (defined for reuse)
     String LoginBtn = "//input[@id='login-button']";
 
     @Test
     public void ValidateSomeFields() {
-        // Validating Font Size
+        // Validating the font size of the username input field
         String fontSize = driver.findElement(By.id("user-name")).getCssValue("font-size");
-        System.out.println(fontSize);
-        Assert.assertEquals("14px", fontSize);
+        System.out.println("Font Size: " + fontSize);
+        Assert.assertEquals("14px", fontSize);  // Expected font size validation
 
-        // Validating Login Button Text
+        // Validating the Login button text
         String loginWord = driver.findElement(By.xpath(LoginBtn)).getDomAttribute("value");
-        System.out.println(loginWord);
-        Assert.assertTrue(loginWord.equals("Login"));
+        System.out.println("Login Button Text: " + loginWord);
+        Assert.assertTrue(loginWord.equals("Login"));  // Checking if button text is "Login"
     }
 
     @Test
-    public void ValidateWindowSize(){
-        // Verifying Windows Size
+    public void ValidateWindowSize() {
+        // Retrieving and printing the current window position
         Point point = driver.manage().window().getPosition();
-        System.out.println(point);
-        System.out.println(point.x);
-        System.out.println(point.y);
+        System.out.println("Current Window Position: " + point);
+        System.out.println("X Position: " + point.x);
+        System.out.println("Y Position: " + point.y);
 
-        // Set window size
-        Point point1 = new Point(25,20);
+        // Setting the browser window position
+        Point point1 = new Point(25, 20);
         driver.manage().window().setPosition(point1);
     }
 
     @Test
-    // Selecting Dropdown
     public void SelectValues() throws InterruptedException {
+        // Logging in before interacting with the dropdown
         ValidateLogin();
+        
+        // Locating the dropdown element
         WebElement element = driver.findElement(By.xpath("//select[@class='product_sort_container']"));
         Select select = new Select(element);
-        select.selectByVisibleText("Price (low to high)"); // Searches for exact element
-        //select.selectByValue("za"); // za
-        //Thread.sleep(200);
-        //select.selectByIndex(3); // select forth value
 
-        // Checks the Multiple Drop down or not
-        if(select.isMultiple()){
-            System.out.println("Is multiple");
-        }
-        else{
-            System.out.println("Not multiple");
+        // Selecting a dropdown option by visible text
+        select.selectByVisibleText("Price (low to high)");
+
+        // Uncomment the following lines to select by value or index
+        // select.selectByValue("za"); // Selecting by value
+        // select.selectByIndex(3); // Selecting the fourth option
+
+        // Checking if the dropdown allows multiple selections
+        if (select.isMultiple()) {
+            System.out.println("Dropdown supports multiple selections.");
+        } else {
+            System.out.println("Dropdown does not support multiple selections.");
         }
     }
 
     @Test
     public void LoginAndTest() {
-        ValidateLogin();  // Call the login function from File1
+        // Calling the login function from File1
+        ValidateLogin();
         System.out.println("Login successful");
     }
 }
